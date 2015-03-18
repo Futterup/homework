@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Canvas Exercise</title>
+	</head>
+	<body>
+		<header>
+			<h1>Canvas Testing</h1>
+		</header>
+		<section>
+			<canvas id="myCanvas" width="300" height="300" style="border:1px solid #000000;"></canvas>
+			<p><button onclick="myCanvas()">Try it</button></p>
+			<img id="scream" src="img_the_scream.png" alt="The Scream" width="220" height="277">		
+		</section>
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			img = null;
+
+			function animloop(){
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+  				render();
+  				requestAnimationFrame(animloop);
+  				
+			};
+
+			function render() {
+					/*Write Text*/
+				ctx.font = "30px Helvetica";
+				ctx.fillText("Art",100,50);
+				
+
+				/*Draw Circle*/
+				ctx.beginPath();
+				ctx.arc(120,100,40,0,2*Math.PI);
+				ctx.strokeStyle="red";
+				ctx.stroke();
+
+				if (img) {
+					ctx.drawImage(img,10,50);
+					console.log('walla')
+					}
+			}
+			
+
+			/*Draw Image*/
+			function myCanvas(){
+			img = document.getElementById("scream");
+			
+			};
+
+			window.addEventListener("load", animloop);
+		</script>
+	</body>
+</html>
+
